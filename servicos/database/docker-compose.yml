@@ -1,0 +1,16 @@
+# Use postgres/example user/password credentials
+
+services:
+
+  db:
+    image: postgres
+    container_name: db-compras
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: example
+      POSTGRES_MULTIPLE_DATABASES: icomprasprodutos, icompraspedidos, icomprasclientes
+    ports:
+      - "5555:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
