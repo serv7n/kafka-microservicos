@@ -29,6 +29,7 @@ public interface PedidoMapper {
         pedido.setDataPedido(LocalDate.now());
         var total = getBigDecimal(pedido);
         pedido.setTotal(total);
+        pedido.getItens().forEach(itemPedido -> itemPedido.setPedido(pedido));
     }
 
     private static BigDecimal getBigDecimal(Pedido pedido) {

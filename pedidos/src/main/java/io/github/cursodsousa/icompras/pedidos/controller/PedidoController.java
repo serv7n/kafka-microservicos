@@ -1,6 +1,7 @@
 package io.github.cursodsousa.icompras.pedidos.controller;
 
 
+import io.github.cursodsousa.icompras.pedidos.Service.PedidoService;
 import io.github.cursodsousa.icompras.pedidos.dto.NovoPedidoDTO;
 
 import io.github.cursodsousa.icompras.pedidos.mapper.PedidoMapper;
@@ -18,10 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("pedidos")
 @RequiredArgsConstructor
 public class PedidoController {
-    private final PedidoMapper pedidoMapper;
-
+    private final PedidoMapper mapper;
+    private final PedidoService service;
     @PostMapping
     public ResponseEntity criar(@RequestBody NovoPedidoDTO dto){
-        return ResponseEntity.ok(dto);
+        Pedido pedido = mapper.toPedido(dto);
+        service.criarPedido(pedido);
+        return ResponseEntity.ok(pedido);
     }
 }
