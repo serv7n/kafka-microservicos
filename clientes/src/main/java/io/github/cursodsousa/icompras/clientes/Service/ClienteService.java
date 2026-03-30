@@ -15,7 +15,7 @@ public class ClienteService {
     {
         return repository.save(cliente);
     }
-    public Optional<Cliente> findClient(Long codigo)
+    public Optional<Cliente> findCliente(Long codigo)
     {
         return repository.findById(codigo);
     }
