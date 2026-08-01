@@ -13,14 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(name = "pedido")
+@RequestMapping("pedido")
 public class PedidoController {
     private final PedidoService pedidoService;
 
     @PostMapping
     public ResponseEntity<Object> criar(@RequestBody NovoPedidoDTO pedidoDTO) {
         Pedido novoPedido = pedidoService.criarPedido(pedidoDTO);
-        return ResponseEntity.ok(novoPedido.getCodigo());
+        System.out.println("Criando novo pedido"+pedidoDTO);
+        return ResponseEntity.ok(novoPedido.getItens().getFirst());
+
     }
 
 }

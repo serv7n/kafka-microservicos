@@ -12,7 +12,6 @@ public class ServicoBancarioClient {
 
     public String solicitarPagamento(Pedido pedido) {
         log.info("Solicitando pagamento para o pedido {}", pedido.getCodigo());
-
         return UUID.randomUUID().toString();
     }
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -38,7 +39,7 @@ public class Pedido {
     private BigDecimal total;
 
     @Column(name = "codigo_rastreio")
-    private String codigo_rastreio;
+    private String codigoRastreio;
 
     @Column(name = "url_nf")
     private String urlNotaFiscal;
@@ -46,7 +47,7 @@ public class Pedido {
     @Transient
     private DadosPagamento dadosPagamento;
 
-    @OneToMany(mappedBy = "codigoPedido")
+    @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens;
 
 }

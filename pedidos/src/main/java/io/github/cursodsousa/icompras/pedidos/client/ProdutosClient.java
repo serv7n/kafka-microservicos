@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 public interface ProdutosClient {
     @GetMapping("{codigo}")
-    ResponseEntity<ProdutoRepresetation> obterProdutos(@PathVariable Integer codigo);
+    ResponseEntity<ProdutoRepresetation> obterProdutos(@PathVariable Long codigo);
 }

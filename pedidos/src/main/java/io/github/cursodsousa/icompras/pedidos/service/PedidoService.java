@@ -19,13 +19,15 @@ public class PedidoService {
     private final ItemPedidoRepository itemPedidoRepository;
     private final PedidoValidator pedidoValidator;
     private final ServicoBancarioClient  servicoBancarioClient;
-
+    private final PedidoMapper pedidoMapper;
     @Transactional
     public Pedido criarPedido(NovoPedidoDTO novoPedidoDTO) {
-        var pedido = PedidoMapper.toEntity(novoPedidoDTO);
-        pedidoValidator.validar(pedido);
+        Pedido pedido = pedidoMapper.toEntity(novoPedidoDTO);
+
+
         pedidoRepository.save(pedido);
         itemPedidoRepository.saveAll(pedido.getItens());
+        pedidoValidator.validar(pedido);
         enviaSolicitacaoDePagamento(pedido);
         return pedido;
     }

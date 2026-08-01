@@ -7,13 +7,14 @@ import io.github.cursodsousa.icompras.pedidos.Enums.StatusPedido;
 import io.github.cursodsousa.icompras.pedidos.model.DadosPagamento;
 import io.github.cursodsousa.icompras.pedidos.model.ItemPedido;
 import io.github.cursodsousa.icompras.pedidos.model.Pedido;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-
+@Component
 public class PedidoMapper {
-    public  static Pedido toEntity(NovoPedidoDTO pedidoDTO) {
+    public   Pedido toEntity(NovoPedidoDTO pedidoDTO) {
         Pedido pedido = new Pedido();
         pedido.setCodigoCliente(pedidoDTO.codigoCliente());
         pedido.setDataPedido(LocalDateTime.now());
@@ -25,11 +26,11 @@ public class PedidoMapper {
         return pedido;
     }
 
-    private static BigDecimal somaTotal(NovoPedidoDTO pedidoDTO) {
+    private  BigDecimal somaTotal(NovoPedidoDTO pedidoDTO) {
         return  pedidoDTO.itens().stream().map(i ->  i.valorUnitario().multiply(BigDecimal.valueOf(i.quantidade()))).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    private static List<ItemPedido> getItemPedidoEntity(NovoPedidoDTO pedidoDTO) {
+    private  List<ItemPedido> getItemPedidoEntity(NovoPedidoDTO pedidoDTO) {
         return pedidoDTO
                 .itens()
                 .stream()
@@ -37,7 +38,7 @@ public class PedidoMapper {
                 .toList();
     }
 
-    public static DadosPagamento dadosPagamentoToEntity(DadosPagamentoDTO dadosPagamentoDTO) {
+    public  DadosPagamento dadosPagamentoToEntity(DadosPagamentoDTO dadosPagamentoDTO) {
         DadosPagamento dadosPagamento = new DadosPagamento();
         dadosPagamento.setDados(dadosPagamentoDTO.dados());
         dadosPagamento.setTipoPagamento(dadosPagamentoDTO.tipoPagamento());
