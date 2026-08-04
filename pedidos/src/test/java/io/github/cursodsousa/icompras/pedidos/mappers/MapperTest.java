@@ -15,7 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MapperTest {
-
+    PedidoMapper pedidoMapper = new PedidoMapper();
     @Test
     void deveConverterItemPedidoDTOParaEntity() {
 
@@ -59,7 +59,7 @@ class MapperTest {
                 List.of(item1, item2)
         );
 
-        Pedido pedido = PedidoMapper.toEntity(pedidoDTO);
+        Pedido pedido = pedidoMapper.toEntity(pedidoDTO);
 
         assertNotNull(pedido);
 
